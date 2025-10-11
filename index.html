@@ -1,10 +1,687 @@
-<!doctype html>
-<html lang="en">
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hello, GitHub Pages</title>
-  <style>body{font:16px/1.5 system-ui, sans-serif; max-width:800px; margin:40px auto; padding:0 16px}</style>
-  <h1>It works 🎉</h1>
-  <p>Welcome to my site on GitHub Pages.</p>
-  <p>Edit <code>index.html</code>, commit, and refresh.</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="Ctrl-World">
+  <meta name="keywords" content="Video generation, Imitation Learning, Robotic Manipulation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    Ctrl-World
+  </title>
+
+  <!-- Thumbnail for social media sharing -->
+  <meta property="og:image" content="media/images/dog_logo.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="media/images/dog_logo.png" type="image/jpeg">
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+  </script>
+
+  
+
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <link rel="stylesheet" href="./static/source_serif_4.css">
+  <link rel="stylesheet" href="./static/source_sans_3.css">  
+  <link rel="stylesheet" href="./static/academicons.min.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/fontawesome.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/brands.css">
+  <link rel="stylesheet" href="./static/fontawesome/css/light.css">
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<!-- <body onload="updateInTheWild();updateBimanual();"> -->
+
+<section class="hero">
+  <div class="hero-body" style="padding-top: 1.5%;">
+    <div class="container is-fullhd">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- <img src="media/images/title-3.png" alt="ReKep" style="display: block; margin: 0 auto; width: 70%"> -->
+          <br>
+          <h1 class="title is-2 publication-title" style="color:#775295;">Ctrl-World: A Controllable Generative World Model for Robot Manipualtion</h1>
+          <!-- <h1 class="title is-1 publication-title" style="color:#775295;">A Controllable Generative World Model for Robot Manipualtion</h1> -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a target="_blank">Yanjiang Guo</a><sup>1,2,*</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank">Lucy Xiaoyang Shi</a><sup>1,*</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank">Jianyu Chen</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a target="_blank">Chelsea Finn</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 affiliation">
+            <sup>1</sup>Stanford University,
+            <sup>2</sup>Tsinghua University,
+          </div>
+          <br>
+          <!-- <div style="height: 2em;"></div> -->
+          <div class="button-container">
+            <!--<a href="./paper.pdf" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="fa-light fa-file"></i>&emsp14;PDF</a> -->
+            <a href="https://ctrl-world.github.io" target="_blank" class="button" style="background-color: #f2f2f2;border: transparent;"><i class="ai ai-arxiv"></i>&emsp14;arXiv</a>
+            <a href="https://github.com/Robert-gyj/Ctrl-World" target="_blank" class="button"><i class="fa-light fa-film"></i>&emsp14;Code</a>
+            <!-- <a href="https://x.com/wenlong_huang/status/1829135436717142319" target="_blank" class="button"><i class="fa-brands fa-x-twitter"></i>&emsp14;tl;dr</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="content-wrapper">
+    <!-- <h2 class="title">Overview</h2> -->
+    <img src="media/images/ctrl_world.jpg" alt="Ctrl-World diagram">
+    <p>
+      Ctrl-World is designed for policy-in-the-loop rollouts with generalist robot policies. It generates joint multi-view predictions (including wrist views), enforces fine-grained action control via frame-level conditioning, and sustains coherent long-horizon dynamics through pose-conditioned memory retrieval. These components enable (1) accurate policy instruction following ability evaluation in imagination and (2) targeted policy improvement in unseen instructions.
+    </p>
+  </div>
+</section>
+
+<section id="control-sequence-unit">
+    
+    <h2>Interactive Control Demo: (start from the initial frame below)</h2>
+
+    <img src="media/images/keyboard_first_frame.png" id="initial-image" alt="Initial state visualization">
+    <br>
+
+    <div class="button-row" id="seq-row-0">
+        <h3>Action chunk 1:</h3>
+        <button class="action-button" data-row="0" data-action="Left">Left</button>
+        <button class="action-button" data-row="0" data-action="Right">Right</button>
+        <button class="action-button" data-row="0" data-action="Down">Down</button>
+        <button class="action-button" data-row="0" data-action="Up">Up</button>
+        <!-- <button class="action-button" data-row="0" data-action="grasp">Grasp</button>
+        <button class="action-button" data-row="0" data-action="ungrasp">Ungrasp</button> -->
+    </div>
+
+    <div class="button-row" id="seq-row-1">
+        <h3>Action chunk 2:</h3>
+        <button class="action-button" data-row="1" data-action="Left">Left</button>
+        <button class="action-button" data-row="1" data-action="Right">Right</button>
+        <button class="action-button" data-row="1" data-action="Down">Down</button>
+        <button class="action-button" data-row="1" data-action="Up">Up</button>
+        <!-- <button class="action-button" data-row="1" data-action="grasp">Grasp</button>
+        <button class="action-button" data-row="1" data-action="ungrasp">Ungrasp</button> -->
+    </div>
+
+    <div class="button-row" id="seq-row-2">
+        <h3>Action chunk 3:</h3>
+        <button class="action-button" data-row="2" data-action="Left">Left</button>
+        <button class="action-button" data-row="2" data-action="Right">Right</button>
+        <button class="action-button" data-row="2" data-action="Down">Down</button>
+        <button class="action-button" data-row="2" data-action="Up">Up</button>
+        <button class="action-button" data-row="2" data-action="Grasp">Grasp</button>
+        <!-- <button class="action-button" data-row="2" data-action="ungrasp">Ungrasp</button> -->
+    </div>
+
+    
+    <div class="video-container">
+        <h3>Generated video:</h3>
+        <video class="result-video" controls autoplay muted>
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+    <style>
+        #control-sequence-unit {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ddd;
+            /* margin: 2rem 0; */
+            margin: 2rem auto;
+            max-width: 800px;
+        }
+        #control-sequence-unit h2 {
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            color: #1c1e21;
+        }
+        #control-sequence-unit .button-row {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap; 
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #control-sequence-unit .button-row h3 {
+            margin: 0 20px 0 0;
+            color: #606770;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        #control-sequence-unit .action-button {
+            border: 1px solid #ccc;
+            background-color: #f5f5f5;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+        #control-sequence-unit .action-button:hover {
+            background-color: #e0e0e0;
+        }
+        #control-sequence-unit .action-button.selected {
+            background-color: #007bff;
+            color: #ffffff;
+            border-color: #007bff;
+            font-weight: bold;
+        }
+        #control-sequence-unit #initial-image {
+            display: block; /* Make it visible by default */
+            margin: 30px auto 0;
+            max-width: 500px; /* Match video player size */
+            width: 100%;
+            border-radius: 8px; /* Match video player style */
+        }
+        #control-sequence-unit .video-container {
+            text-align: center;
+            margin-top: 30px;
+            min-height: 200px;
+        }
+        #control-sequence-unit .result-video {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            display: none;
+            display: block; 
+            margin: auto;
+        }
+    </style>
+
+
+<script>
+    // Use an Immediately Invoked Function Expression (IIFE) to avoid global scope pollution
+    (() => {
+        const controlUnit = document.getElementById('control-sequence-unit');
+        if (!controlUnit) return; // Stop if the unit isn't on the page
+
+        const videoMap = {};
+        const actions = ['Left', 'Right', 'Down', 'Up', 'Grasp', 'Ungrasp'];
+
+        for (const action1 of actions) {
+            for (const action2 of actions) {
+                for (const action3 of actions) {
+                    const key = `${action1}-${action2}-${action3}-`;
+                    videoMap[key] = `media/videos/video3/${key}.mp4`;
+                }
+            }
+        }
+        
+        let selections = ['Down', 'Down', 'Grasp']; 
+        
+        const videoPlayer = controlUnit.querySelector('.result-video');
+        const initialImage = controlUnit.querySelector('#initial-image');
+        const allButtons = controlUnit.querySelectorAll('.action-button');
+
+        function triggerVideoCheck() {
+            if (selections.every(selection => selection !== null)) {
+                const combinationKey = selections.join('-') + '-';
+                const videoSrc = videoMap[combinationKey];
+
+                if (videoSrc) {
+                    // initialImage.style.display = 'none';
+                    videoPlayer.src = videoSrc;
+                    videoPlayer.style.display = 'block';
+                    videoPlayer.play();
+                } else {
+                    console.error("Video not found in videoMap for key:", combinationKey);
+                    videoPlayer.style.display = 'none';
+                    initialImage.style.display = 'block';
+                    videoPlayer.src = ''; 
+                }
+            }
+        }
+
+        allButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const clickedButton = event.target;
+                const row = parseInt(clickedButton.dataset.row);
+                
+                // CORRECTED #1: The action is now correctly capitalized from the HTML.
+                const action = clickedButton.dataset.action; 
+                
+                selections[row] = action; // Store the capitalized version
+
+                const buttonsInRow = controlUnit.querySelectorAll(`#seq-row-${row} .action-button`);
+                buttonsInRow.forEach(btn => btn.classList.remove('selected'));
+                clickedButton.classList.add('selected');
+                
+                triggerVideoCheck();
+            });
+        });
+        
+        videoPlayer.addEventListener('error', () => {
+            console.error(`Error loading video file. Check path for: ${videoPlayer.src}`);
+            videoPlayer.style.display = 'none'; 
+            initialImage.style.display = 'block';
+        });
+
+        function initializeDefaultState() {
+            selections.forEach((action, row) => {
+                // CORRECTED #2: Removed .toLowerCase() to match the capitalized data-action in the HTML.
+                const buttonToSelect = controlUnit.querySelector(`.action-button[data-row="${row}"][data-action="${action}"]`);
+                
+                if (buttonToSelect) {
+                    buttonToSelect.classList.add('selected'); // This makes the button blue
+                }
+            });
+            triggerVideoCheck();
+        }
+
+        initializeDefaultState();
+        
+    })();
+</script>
+
+</section>
+
+
+
+<section class="hero teaser">
+
+
+<br>
+<br>
+<div class="content-wrapper">
+  <h2 class="title is-3" style="margin-bottom: 0.5em; color:#000000">Model architecture</h2>
+  <p class="content has-text-justified" style="margin-bottom: 0.6em">Ctrl-World is initialized from a pretrained video diffusion model and adapted into a controllable, temporally consistent world model with: (1) Multi-view input and joint prediction for unified information understanding. (2) Memory retrieval mechanism, which adds sparse history frames in context and project pose information into each frame via frame-level cross-attention, re-anchoring predictions to similar past states. (3) Frame-level action conditioning to better align high-frequency action with visual dynamics.<br><br><br></b>
+  </p>
+
+  <!-- <img src="media/figures/method.jpg" class="method-image" /> -->
+  <div class="columns is-vcentered  is-centered">
+    <!-- <video id="teaser" autoplay muted loop  height="90%" width="90%">
+      <source src="media/videos/model.mp4"
+              type="video/mp4">
+    </video> -->
+    <img src="media/images/method.png" class="method-image" />
+  </div>
+</div>
+
+</section>
+
+<section class="comparison-section">
+  
+  <h2 class="comparison-title">Comparisons on Rollouts in Real-World and World Model (Figure 6 of paper)</h2>
+
+  <div class="comparison-grid">
+    
+    <div class="side-label label-real-world">Real World<br>Execution</div>
+    <div class="task-comparison">
+      <h4>Pick blue block and place on white plate</h4>
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_0_gt.mp4"></video>
+    </div>
+    <div class="task-comparison">
+      <h4>Fold the towel into half</h4>
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_1_gt.mp4"></video>
+    </div>
+
+    <div class="side-label label-world-model">World Model<br>Rollout</div>
+    <div class="task-comparison">
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_0_pred.mp4"></video>
+    </div>
+    <div class="task-comparison">
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_1_pred.mp4"></video>
+    </div>
+
+    <div class="side-label label-real-world">Real World<br>Execution</div>
+    <div class="task-comparison">
+      <h4>Place sponge in drawer</h4>
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_2_gt.mp4"></video>
+    </div>
+    <div class="task-comparison">
+      <h4>Close the laptop</h4>
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_3_gt.mp4"></video>
+    </div>
+
+    <div class="side-label label-world-model">World Model<br>Rollout</div>
+    <div class="task-comparison">
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_2_pred.mp4"></video>
+    </div>
+    <div class="task-comparison">
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_3_pred.mp4"></video>
+    </div>
+
+        <div class="side-label label-real-world">Real World<br>Execution</div>
+    <div class="task-comparison">
+      <h4>Move towel from left to right.</h4>
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_4_gt.mp4"></video>
+    </div>
+    <div class="task-comparison">
+      <h4>Pull one tissue out of the box.</h4>
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_5_gt.mp4"></video>
+    </div>
+
+    <div class="side-label label-world-model">World Model<br>Rollout</div>
+    <div class="task-comparison">
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_4_pred.mp4"></video>
+    </div>
+    <div class="task-comparison">
+      <video autoplay loop muted playsinline src="media/videos/comparison/figure8_5_pred.mp4"></video>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .comparison-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .comparison-title {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  .comparison-grid {
+    display: grid;
+    /* Defines 3 columns: a narrow one for labels and two flexible ones for videos. */
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 20px 15px; /* Vertical and horizontal spacing between grid items. */
+    align-items: center;
+  }
+
+  .side-label {
+    font-weight: bold;
+    text-align: right;
+    padding-right: 20px;
+    font-size: 1.1em;
+    line-height: 1.4;
+  }
+
+  .label-real-world {
+    color: #C62828; /* A deep, readable red */
+  }
+
+  .label-world-model {
+    color: #2E7D32; /* A deep, readable green */
+  }
+
+  .task-comparison h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 1em;
+    color: #333;
+  }
+
+  .task-comparison video {
+    width: 100%;
+    border-radius: 8px;
+    display: block; /* Removes any extra space below the video element. */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+</style>
+
+<section class="synthetic-data-section">
+  
+  <h2 class="synthetic-data-title">Synthetic Data Used for Finetuning the Polic (Figure 8 of paper)</h2>
+
+  <div class="data-grid">
+    
+    <div class="data-label">
+      <strong>Novel Object</strong>
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_0_pred.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_1_pred.mp4"></video>
+
+    <div class="data-label">
+      <strong>Folding towel from desired direction.</strong>
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_2_pred.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_3_pred.mp4"></video>
+    <div class="data-label">
+      <strong>Spatial understanding.</strong>
+      <p class="label-description">(e.g., left, right, top right, bottom side)</p>
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_4_pred.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_5_pred.mp4"></video>
+    <div class="data-label">
+      <strong>Shape understanding.</strong>
+      <p class="label-description">(E.g., smaller,larger block)</p>
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_6_pred.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/synthetic/figure8_7_pred.mp4"></video>
+
+  </div>
+</section>
+
+<style>
+  .synthetic-data-section {
+    max-width: 1100px;
+    margin: 40px auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .synthetic-data-title {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 25px;
+    font-weight: 600;
+  }
+
+  .data-grid {
+    display: grid;
+    /* Defines 3 columns: a fixed one for labels and two flexible ones for videos. */
+    grid-template-columns: 140px 1fr 1fr;
+    gap: 25px 15px; /* Vertical and horizontal spacing. */
+    align-items: center; /* Vertically aligns content in each row. */
+  }
+
+  .data-label {
+    padding-right: 20px;
+  }
+
+  .data-label strong {
+    font-size: 1.1em;
+    color: #333;
+    line-height: 1.4;
+  }
+
+  .data-label .label-description {
+    font-size: 0.95em;
+    color: #555;
+    margin: 5px 0 0 0;
+    line-height: 1.5;
+  }
+  
+  .data-grid video {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+</style>
+
+<!-- ### How It Works
+
+* **CSS Grid (`display: grid`)**: This is the core of the layout. The rule `grid-template-columns: 240px 1fr 1fr;` creates three columns: a **240px** fixed-width column for the text labels, and two `1fr` (fractional unit) columns that equally share the rest of the available width for the videos.
+* **Vertical Alignment**: `align-items: center;` on the grid container automatically centers the content of each cell vertically, ensuring the labels are perfectly aligned with the videos next to them.
+* **Hierarchical Labels**: Inside `.data-label`, a `<strong>` tag is used for the main category name, and a `<p>` tag with the class `.label-description` is used for the smaller, more descriptive text, allowing them to be styled independently.
+* **Video Attributes**: The `<video>` tags use `autoplay`, `loop`, `muted`, and `playsinline` to ensure they play automatically and continuously, much like animated GIFs, without requiring user interaction. -->
+
+
+  <!-- ==================== POLICY IMPROVEMENT SECTION START ==================== -->
+<section class="policy-improvement-section">
+
+  <h2 class="policy-improvement-title">Qualitative Results of Policy Improvement (Figure 9 of paper)</h2>
+
+  <!-- The Grid Container -->
+  <div class="policy-grid">
+
+    <!-- Row 1: Headers -->
+    <div class="grid-header-label">Language instruction:</div>
+    <div class="grid-header header-base-policy">Base Policy: wrong instruction following :(</div>
+    <div class="grid-header header-post-training">Post-training on synthetic data: success :)</div>
+
+    <!-- Row 2: First Example -->
+    <div class="instruction-text">
+      1. Pick the object in <span class="highlight-red">top left side</span> and place in box.
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_0.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_1.mp4"></video>
+
+    <!-- Row 3: Second Example -->
+    <div class="instruction-text">
+      2. Pick <span class="highlight-red">glove</span> and place in box.
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_2.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_3.mp4"></video>
+    <div class="instruction-text">
+      3. Pick the <span class="highlight-red">larger</span> red blcok and place in box.
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_4.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_5.mp4"></video>
+
+    <!-- Row 3: Second Example -->
+    <div class="instruction-text">
+      4. Fold the towel <span class="highlight-red">from left to right</span>.
+    </div>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_6.mp4"></video>
+    <video autoplay loop muted playsinline src="media/videos/improve/policy_7.mp4"></video>
+
+  </div>
+</section>
+
+<style>
+  .policy-improvement-section {
+    max-width: 1200px;
+    margin: 40px auto;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  .policy-improvement-title {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+
+  .policy-grid {
+    display: grid;
+    /* Defines 3 columns: instructions and two equal video columns. */
+    grid-template-columns: 1fr 2fr 2fr;
+    gap: 20px 25px; /* Vertical and horizontal spacing. */
+    align-items: center;
+  }
+
+  .grid-header {
+    font-weight: 600;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+  }
+  
+  .grid-header-label {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  .header-base-policy {
+    color: #C62828; /* Deep red */
+  }
+
+  .header-post-training {
+    color: #2E7D32; /* Deep green */
+  }
+
+  .instruction-text {
+    font-size: 1.1em;
+    line-height: 1.6;
+    padding-right: 15px;
+  }
+
+  .instruction-text .highlight-red {
+    color: #D32F2F; /* A slightly brighter red for emphasis */
+    font-weight: 600;
+  }
+
+  .policy-grid video {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+</style>
+<!-- ===================== POLICY IMPROVEMENT SECTION END ===================== -->
+
+<style>
+  .button.is-info.is-outlined:focus,
+  .button.is-info.is-outlined:active {
+    background-color: transparent;
+    border-color: #6510ad;
+    color: #6510ad;
+    box-shadow: none;
+  }
+
+  .button.is-info.is-outlined:hover {
+    background-color: #6510ad;
+    color: #fff;
+  }
+
+  .button.is-info.is-outlined:hover .icon ion-icon,
+  .button.is-info.is-outlined:hover span {
+    color: #fff;
+  }
+  
+  .content-wrapper {
+    width: 60%; /* Sets the container width to 80% */
+    margin: 0 auto; /* Centers the container horizontally */
+    text-align: center; /* Centers the heading */
+  }
+
+  .content-wrapper img {
+    max-width: 100%; /* Makes the image responsive */
+    height: auto; /* Maintains aspect ratio */
+  }
+
+  .content-wrapper p {
+    text-align: justify; /* Justifies the paragraph text */
+  }
+
+  .title {
+    margin-bottom: 2.5em;
+    font-size: 2rem; /* Example font size */
+    color: #000000;
+  }
+</style>
+
+</body>
 </html>
