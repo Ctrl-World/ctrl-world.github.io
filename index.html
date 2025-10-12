@@ -60,26 +60,26 @@
         <div class="column has-text-centered">
           <!-- <img src="media/images/title-3.png" alt="ReKep" style="display: block; margin: 0 auto; width: 70%"> -->
           <br>
-          <h1 class="title is-2 publication-title" style="color:#775295;">Ctrl-World: A Controllable Generative World Model for Robot Manipualtion</h1>
+          <h1 class="title is-2 publication-title" style="color:#775295;">Ctrl-World: A Controllable Generative World Model for Robot Manipulation</h1>
           <!-- <h1 class="title is-1 publication-title" style="color:#775295;">A Controllable Generative World Model for Robot Manipualtion</h1> -->
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a target="_blank">Yanjiang Guo</a><sup>1,2,*</sup>,
+              <a target="_blank" href="https://robert-gyj.github.io/">Yanjiang Guo</a><sup>1,2,*</sup>,
             </span>
             <span class="author-block">
-              <a target="_blank">Lucy Xiaoyang Shi</a><sup>1,*</sup>,
+              <a target="_blank" href="https://lucys0.github.io/">Lucy Xiaoyang Shi</a><sup>1,*</sup>,
             </span>
             <span class="author-block">
-              <a target="_blank">Jianyu Chen</a><sup>2</sup>,
+              <a target="_blank" href="https://people.iiis.tsinghua.edu.cn/~jychen/">Jianyu Chen</a><sup>2</sup>,
             </span>
             <span class="author-block">
-              <a target="_blank">Chelsea Finn</a><sup>1</sup>
+              <a target="_blank" href="https://ai.stanford.edu/~cbfinn/">Chelsea Finn</a><sup>1</sup>
             </span>
           </div>
 
           <div class="is-size-5 affiliation">
             <sup>1</sup>Stanford University,
-            <sup>2</sup>Tsinghua University,
+            <sup>2</sup>Tsinghua University
           </div>
           <br>
           <!-- <div style="height: 2em;"></div> -->
@@ -111,15 +111,23 @@
 <div class="content-wrapper">
   <h2 class="title">Interactive demos</h2>
   <p>
-    Start from the initial frame below and select actions to generate a video. Ctrl-World is directly conditioned on low-level action chunks and we translate action chunk into text for better understanding.
+    <strong> Starting from the <span class="highlight-red">same initial frame</span>, Ctrl-World can autoregressively generate <span class="highlight-red">diverse future</span> trajectories conditioned on the given action chunks, achieving <span class="highlight-red">centimeter-level precision</span> even in unseen scenarios. </strong> You can select any action combinations and generate corresponding videos. For clarity, we translate each action chunk into text.
   </p>
+
+  <style>
+    .highlight-red {
+    color: #D32F2F; /* A slightly brighter red for emphasis */
+    font-weight: 600;
+  }
+  </style>
+
 </div>
 
 
 <div class="demo-container">
 
     <section id="control-sequence-unit-1" class="control-sequence-unit">
-        <h2>Interactive Control Demo 1</h2>
+        <h2>Interactive Control Demo 1: Keyborad Control</h2>
         <!-- <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">Start from the initial frame below and select actions to generate a video.</p> -->
         <img src="media/images/keyboard_first_frame.png" class="initial-image" alt="Initial state visualization">
         <div class="button-row">
@@ -146,14 +154,14 @@
         </div>
         <div class="video-container">
             <h3>Generated video:</h3>
-            <video class="result-video" controls autoplay muted playsinline loop>
+            <video class="result-video" controls muted playsinline>
                 Your browser does not support the video tag.
             </video>
         </div>
     </section>
 
     <section id="control-sequence-unit-2" class="control-sequence-unit">
-        <h2>Interactive Control Demo 2</h2>
+        <h2>Interactive Control Demo 2: Interact with Different Object</h2>
         <!-- <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">Start from the initial frame below and select actions to generate a video.</p> -->
         <img src="media/images/keyboard_first_frame1.png" class="initial-image" alt="Initial state visualization">
         <div class="button-row">
@@ -163,24 +171,94 @@
             <button class="action-button" data-row="0" data-action="cup2">Cup Right Edge</button>
         </div>
         <div class="button-row">
-            <h3>Action Chunk 3</h3>
+            <h3>Action Chunk 3:</h3>
             <button class="action-button" data-row="1" data-action="grasp">Close Gripper</button>
             <button class="action-button" data-row="1" data-action="ungrasp">Open Gripper</button>
         </div>
         <div class="button-row">
-            <h3>Action Chunk 4</h3>
+            <h3>Action Chunk 4:</h3>
             <button class="action-button" data-row="2" data-action="0.1">Lift up 6cm</button>
             <button class="action-button" data-row="2" data-action="0.2">Lift up 12cm</button>
         </div>
         <div class="video-container">
             <h3>Generated video:</h3>
-            <video class="result-video" controls autoplay muted playsinline loop>
+            <video class="result-video" controls muted playsinline>
                 Your browser does not support the video tag.
             </video>
         </div>
     </section>
 
 </div>
+
+<div class="demo-container">
+
+    <section id="control-sequence-unit-3" class="control-sequence-unit">
+        <h2>Interactive Control Demo 3: Centimeter-level precision</h2>
+        <!-- <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">Start from the initial frame below and select actions to generate a video.</p> -->
+        <img src="media/images/keyboard_first_frame3.png" class="initial-image" alt="Initial state visualization">
+        <div class="button-row">
+            <h3>Action chunk 1:</h3>
+            <button class="action-button" data-row="0" data-action="3cm">Down 3cm</button>
+            <button class="action-button" data-row="0" data-action="6cm">Down 6cm</button>
+            <button class="action-button" data-row="0" data-action="9cm">Down 9cm</button>
+            <!-- <button class="action-button" data-row="0" data-action="Up">Up</button> -->
+        </div>
+        <div class="button-row">
+            <h3>Action chunk 2:</h3>
+            <button class="action-button" data-row="1" data-action="3cm">Left 3cm</button>
+            <button class="action-button" data-row="1" data-action="6cm">Left 6cm</button>
+            <button class="action-button" data-row="1" data-action="9cm">Left 9cm</button>
+            <!-- <button class="action-button" data-row="1" data-action="Up">Up</button> -->
+        </div>
+        <div class="button-row">
+            <h3>Action chunk 3:</h3>
+            <button class="action-button" data-row="2" data-action="3cm">Forward 3cm</button>
+            <button class="action-button" data-row="2" data-action="6cm">Forward 6cm</button>
+            <button class="action-button" data-row="2" data-action="9cm">Forward 9cm</button>
+            <!-- <button class="action-button" data-row="2" data-action="Up">Up</button>
+            <button class="action-button" data-row="2" data-action="Grasp">Grasp</button> -->
+        </div>
+        <div class="video-container">
+            <h3>Generated video:</h3>
+            <video class="result-video" controls muted playsinline>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <section id="control-sequence-unit-4" class="control-sequence-unit">
+        <h2>Interactive Control Demo 4: Interact with Different Object</h2>
+        <!-- <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">Start from the initial frame below and select actions to generate a video.</p> -->
+        <img src="media/images/keyboard_first_frame4.png" class="initial-image" alt="Initial state visualization">
+        <div class="button-row">
+            <h3>Action chunk 1/2/3</h3>
+            <button class="action-button" data-row="0" data-action="toy">Pick up green toy</button>
+            <!-- <button class="action-button" data-row="0" data-action="cup">Cup Left Edge</button>
+            <button class="action-button" data-row="0" data-action="cup2">Cup Right Edge</button> -->
+        </div>
+        <div class="button-row">
+            <h3>Action Chunk 4/5:</h3>
+            <button class="action-button" data-row="1" data-action="drawer">Go to drawer</button>
+            <button class="action-button" data-row="1" data-action="pot">Go to pot</button>
+            <button class="action-button" data-row="1" data-action="towel">Go to towel</button>
+        </div>
+        <div class="button-row">
+            <h3>Action Chunk 6/7:</h3>
+            <button class="action-button" data-row="2" data-action="place">Place inside</button>
+            <!-- <button class="action-button" data-row="2" data-action="0.2">Lift up 12cm</button> -->
+        </div>
+        <div class="video-container">
+            <h3>Generated video:</h3>
+            <video class="result-video" controls muted playsinline>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+</div>
+
+
+
 
 <style>
     /* NEW CSS FOR THE WRAPPER */
@@ -189,6 +267,9 @@
       gap: 2rem;
       align-items: flex-start;
       padding: 0 2rem;
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .demo-container > .control-sequence-unit {
@@ -295,6 +376,13 @@
         const videoPlayer = controlUnit.querySelector('.result-video');
         const allButtons = controlUnit.querySelectorAll('.action-button');
 
+        // This new event listener creates the delayed loop
+        videoPlayer.addEventListener('ended', () => {
+            setTimeout(() => {
+                videoPlayer.play();
+            }, 1000); // Wait 1 second before looping
+        });
+
         function triggerVideoCheck() {
             const combinationKey = selections.join('-') + (config.keySuffix || '');
             const videoSrc = videoMap[combinationKey];
@@ -349,7 +437,7 @@
                 ['Left', 'Right', 'Down', 'Up', 'Grasp']
             ],
             defaultSelections: ['Down', 'Down', 'Grasp'],
-            videoPath: 'media/videos/video3/',
+            videoPath: 'media/videos/video0/',
             keySuffix: '-'
         };
         initializeDemoUnit('control-sequence-unit-1', demo1Config);
@@ -364,6 +452,29 @@
             videoPath: 'media/videos/video1/'
         };
         initializeDemoUnit('control-sequence-unit-2', demo2Config);
+
+        const demo3Config = {
+            actions: [
+                ['3cm', '6cm', '9cm'],
+                ['3cm', '6cm', '9cm'],
+                ['3cm', '6cm', '9cm'],
+            ],
+            defaultSelections: ['6cm', '6cm', '6cm'],
+            videoPath: 'media/videos/video3/',
+            // keySuffix: '-'
+        };
+        initializeDemoUnit('control-sequence-unit-3', demo3Config);
+
+        const demo4Config = {
+            actions: [
+                ['toy'],
+                ['drawer', 'towel', 'pot'],
+                ['place']
+            ],
+            defaultSelections: ['toy', 'drawer', 'place'],
+            videoPath: 'media/videos/video4/'
+        };
+        initializeDemoUnit('control-sequence-unit-4', demo4Config);
     });
 </script>
 
