@@ -105,165 +105,207 @@
   </div>
 </section>
 
-<section id="control-sequence-unit">
-    
-    <h2>Interactive Control Demo: (start from the initial frame below)</h2>
 
-    <img src="media/images/keyboard_first_frame.png" id="initial-image" alt="Initial state visualization">
-    <br>
+<br><br>
 
-    <div class="button-row" id="seq-row-0">
-        <h3>Action chunk 1:</h3>
-        <button class="action-button" data-row="0" data-action="Left">Left</button>
-        <button class="action-button" data-row="0" data-action="Right">Right</button>
-        <button class="action-button" data-row="0" data-action="Down">Down</button>
-        <button class="action-button" data-row="0" data-action="Up">Up</button>
-        <!-- <button class="action-button" data-row="0" data-action="grasp">Grasp</button>
-        <button class="action-button" data-row="0" data-action="ungrasp">Ungrasp</button> -->
-    </div>
-
-    <div class="button-row" id="seq-row-1">
-        <h3>Action chunk 2:</h3>
-        <button class="action-button" data-row="1" data-action="Left">Left</button>
-        <button class="action-button" data-row="1" data-action="Right">Right</button>
-        <button class="action-button" data-row="1" data-action="Down">Down</button>
-        <button class="action-button" data-row="1" data-action="Up">Up</button>
-        <!-- <button class="action-button" data-row="1" data-action="grasp">Grasp</button>
-        <button class="action-button" data-row="1" data-action="ungrasp">Ungrasp</button> -->
-    </div>
-
-    <div class="button-row" id="seq-row-2">
-        <h3>Action chunk 3:</h3>
-        <button class="action-button" data-row="2" data-action="Left">Left</button>
-        <button class="action-button" data-row="2" data-action="Right">Right</button>
-        <button class="action-button" data-row="2" data-action="Down">Down</button>
-        <button class="action-button" data-row="2" data-action="Up">Up</button>
-        <button class="action-button" data-row="2" data-action="Grasp">Grasp</button>
-        <!-- <button class="action-button" data-row="2" data-action="ungrasp">Ungrasp</button> -->
-    </div>
-
-    
-    <div class="video-container">
-        <h3>Generated video:</h3>
-        <video class="result-video" controls autoplay muted>
-            Your browser does not support the video tag.
-        </video>
-    </div>
+<div class="content-wrapper">
+  <h2 class="title">Interactive demos</h2>
+  <p>
+    Start from the initial frame below and select actions to generate a video. Ctrl-World is directly conditioned on low-level action chunks and we translate action chunk into text for better understanding.
+  </p>
+</div>
 
 
-    <style>
-        #control-sequence-unit {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            border: 1px solid #ddd;
-            /* margin: 2rem 0; */
-            margin: 2rem auto;
-            max-width: 800px;
-        }
-        #control-sequence-unit h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 30px;
-            color: #1c1e21;
-        }
-        #control-sequence-unit .button-row {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap; 
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        #control-sequence-unit .button-row h3 {
-            margin: 0 20px 0 0;
-            color: #606770;
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        #control-sequence-unit .action-button {
-            border: 1px solid #ccc;
-            background-color: #f5f5f5;
-            padding: 10px 18px;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
-        }
-        #control-sequence-unit .action-button:hover {
-            background-color: #e0e0e0;
-        }
-        #control-sequence-unit .action-button.selected {
-            background-color: #007bff;
-            color: #ffffff;
-            border-color: #007bff;
-            font-weight: bold;
-        }
-        #control-sequence-unit #initial-image {
-            display: block; /* Make it visible by default */
-            margin: 30px auto 0;
-            max-width: 500px; /* Match video player size */
-            width: 100%;
-            border-radius: 8px; /* Match video player style */
-        }
-        #control-sequence-unit .video-container {
-            text-align: center;
-            margin-top: 30px;
-            min-height: 200px;
-        }
-        #control-sequence-unit .result-video {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 8px;
-            display: none;
-            display: block; 
-            margin: auto;
-        }
-    </style>
+<div class="demo-container">
 
+    <section id="control-sequence-unit-1" class="control-sequence-unit">
+        <h2>Interactive Control Demo 1</h2>
+        <!-- <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">Start from the initial frame below and select actions to generate a video.</p> -->
+        <img src="media/images/keyboard_first_frame.png" class="initial-image" alt="Initial state visualization">
+        <div class="button-row">
+            <h3>Action chunk 1:</h3>
+            <button class="action-button" data-row="0" data-action="Left">Left</button>
+            <button class="action-button" data-row="0" data-action="Right">Right</button>
+            <button class="action-button" data-row="0" data-action="Down">Down</button>
+            <button class="action-button" data-row="0" data-action="Up">Up</button>
+        </div>
+        <div class="button-row">
+            <h3>Action chunk 2:</h3>
+            <button class="action-button" data-row="1" data-action="Left">Left</button>
+            <button class="action-button" data-row="1" data-action="Right">Right</button>
+            <button class="action-button" data-row="1" data-action="Down">Down</button>
+            <button class="action-button" data-row="1" data-action="Up">Up</button>
+        </div>
+        <div class="button-row">
+            <h3>Action chunk 3:</h3>
+            <button class="action-button" data-row="2" data-action="Left">Left</button>
+            <button class="action-button" data-row="2" data-action="Right">Right</button>
+            <button class="action-button" data-row="2" data-action="Down">Down</button>
+            <button class="action-button" data-row="2" data-action="Up">Up</button>
+            <button class="action-button" data-row="2" data-action="Grasp">Grasp</button>
+        </div>
+        <div class="video-container">
+            <h3>Generated video:</h3>
+            <video class="result-video" controls autoplay muted playsinline loop>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+    <section id="control-sequence-unit-2" class="control-sequence-unit">
+        <h2>Interactive Control Demo 2</h2>
+        <!-- <p style="text-align: center; margin-top: -1.5rem; margin-bottom: 2rem;">Start from the initial frame below and select actions to generate a video.</p> -->
+        <img src="media/images/keyboard_first_frame1.png" class="initial-image" alt="Initial state visualization">
+        <div class="button-row">
+            <h3>Action chunk 1/2: Reach</h3>
+            <button class="action-button" data-row="0" data-action="towel">Towel</button>
+            <button class="action-button" data-row="0" data-action="cup">Cup Left Edge</button>
+            <button class="action-button" data-row="0" data-action="cup2">Cup Right Edge</button>
+        </div>
+        <div class="button-row">
+            <h3>Action Chunk 3</h3>
+            <button class="action-button" data-row="1" data-action="grasp">Close Gripper</button>
+            <button class="action-button" data-row="1" data-action="ungrasp">Open Gripper</button>
+        </div>
+        <div class="button-row">
+            <h3>Action Chunk 4</h3>
+            <button class="action-button" data-row="2" data-action="0.1">Lift up 6cm</button>
+            <button class="action-button" data-row="2" data-action="0.2">Lift up 12cm</button>
+        </div>
+        <div class="video-container">
+            <h3>Generated video:</h3>
+            <video class="result-video" controls autoplay muted playsinline loop>
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </section>
+
+</div>
+
+<style>
+    /* NEW CSS FOR THE WRAPPER */
+    .demo-container {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 0 2rem;
+    }
+
+    .demo-container > .control-sequence-unit {
+      flex: 1;
+      margin: 2rem 0; /* Overrides the auto side margins */
+    }
+
+    /* Media query for responsiveness */
+    @media (max-width: 1024px) {
+      .demo-container {
+        flex-direction: column;
+        padding: 0 1rem;
+      }
+    }
+
+    /* Your existing CSS */
+    .control-sequence-unit {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background-color: #ffffff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid #ddd;
+        /* The original 'margin: 2rem auto' is handled by the container now */
+        max-width: 800px; 
+    }
+    .control-sequence-unit h2 {
+        text-align: center;
+        margin-top: 0;
+        margin-bottom: 30px;
+        color: #1c1e21;
+    }
+    .control-sequence-unit .button-row {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap; 
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .control-sequence-unit .button-row h3 {
+        margin: 0 20px 0 0;
+        color: #606770;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+    .control-sequence-unit .action-button {
+        border: 1px solid #ccc;
+        background-color: #f5f5f5;
+        padding: 10px 18px;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .control-sequence-unit .action-button:hover {
+        background-color: #e0e0e0;
+    }
+    .control-sequence-unit .action-button.selected {
+        background-color: #007bff;
+        color: #ffffff;
+        border-color: #007bff;
+        font-weight: bold;
+    }
+    .control-sequence-unit .initial-image {
+        display: block;
+        margin: 0 auto 30px auto;
+        max-width: 500px;
+        width: 100%;
+        border-radius: 8px;
+    }
+    .control-sequence-unit .video-container {
+        text-align: center;
+        margin-top: 30px;
+        min-height: 200px;
+    }
+    .control-sequence-unit .result-video {
+        width: 100%;
+        max-width: 500px;
+        border-radius: 8px;
+        display: none;
+        margin: auto;
+    }
+</style>
 
 <script>
-    // Use an Immediately Invoked Function Expression (IIFE) to avoid global scope pollution
-    (() => {
-        const controlUnit = document.getElementById('control-sequence-unit');
-        if (!controlUnit) return; // Stop if the unit isn't on the page
+    const initializeDemoUnit = (unitId, config) => {
+        const controlUnit = document.getElementById(unitId);
+        if (!controlUnit) return;
 
         const videoMap = {};
-        const actions = ['Left', 'Right', 'Down', 'Up', 'Grasp', 'Ungrasp'];
-
-        for (const action1 of actions) {
-            for (const action2 of actions) {
-                for (const action3 of actions) {
-                    const key = `${action1}-${action2}-${action3}-`;
-                    videoMap[key] = `media/videos/video3/${key}.mp4`;
+        let selections = [...config.defaultSelections];
+        
+        const [actions1, actions2, actions3] = config.actions;
+        for (const action1 of actions1) {
+            for (const action2 of actions2) {
+                for (const action3 of actions3) {
+                    const key = `${action1}-${action2}-${action3}${config.keySuffix || ''}`;
+                    videoMap[key] = `${config.videoPath}${key}.mp4`;
                 }
             }
         }
-        
-        let selections = ['Down', 'Down', 'Grasp']; 
-        
+
         const videoPlayer = controlUnit.querySelector('.result-video');
-        const initialImage = controlUnit.querySelector('#initial-image');
         const allButtons = controlUnit.querySelectorAll('.action-button');
 
         function triggerVideoCheck() {
-            if (selections.every(selection => selection !== null)) {
-                const combinationKey = selections.join('-') + '-';
-                const videoSrc = videoMap[combinationKey];
+            const combinationKey = selections.join('-') + (config.keySuffix || '');
+            const videoSrc = videoMap[combinationKey];
 
-                if (videoSrc) {
-                    // initialImage.style.display = 'none';
-                    videoPlayer.src = videoSrc;
-                    videoPlayer.style.display = 'block';
-                    videoPlayer.play();
-                } else {
-                    console.error("Video not found in videoMap for key:", combinationKey);
-                    videoPlayer.style.display = 'none';
-                    initialImage.style.display = 'block';
-                    videoPlayer.src = ''; 
-                }
+            if (videoSrc) {
+                videoPlayer.style.display = 'block';
+                videoPlayer.src = videoSrc;
+                videoPlayer.play();
+            } else {
+                console.error(`Video not found for key: "${combinationKey}"`);
+                videoPlayer.style.display = 'none';
             }
         }
 
@@ -271,13 +313,9 @@
             button.addEventListener('click', (event) => {
                 const clickedButton = event.target;
                 const row = parseInt(clickedButton.dataset.row);
-                
-                // CORRECTED #1: The action is now correctly capitalized from the HTML.
-                const action = clickedButton.dataset.action; 
-                
-                selections[row] = action; // Store the capitalized version
+                selections[row] = clickedButton.dataset.action;
 
-                const buttonsInRow = controlUnit.querySelectorAll(`#seq-row-${row} .action-button`);
+                const buttonsInRow = controlUnit.querySelectorAll(`.action-button[data-row="${row}"]`);
                 buttonsInRow.forEach(btn => btn.classList.remove('selected'));
                 clickedButton.classList.add('selected');
                 
@@ -286,29 +324,55 @@
         });
         
         videoPlayer.addEventListener('error', () => {
-            console.error(`Error loading video file. Check path for: ${videoPlayer.src}`);
+            console.error(`Error loading video file: ${videoPlayer.src}`);
             videoPlayer.style.display = 'none'; 
-            initialImage.style.display = 'block';
         });
 
         function initializeDefaultState() {
             selections.forEach((action, row) => {
-                // CORRECTED #2: Removed .toLowerCase() to match the capitalized data-action in the HTML.
                 const buttonToSelect = controlUnit.querySelector(`.action-button[data-row="${row}"][data-action="${action}"]`);
-                
                 if (buttonToSelect) {
-                    buttonToSelect.classList.add('selected'); // This makes the button blue
+                    buttonToSelect.classList.add('selected');
                 }
             });
             triggerVideoCheck();
         }
 
         initializeDefaultState();
-        
-    })();
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const demo1Config = {
+            actions: [
+                ['Left', 'Right', 'Down', 'Up'],
+                ['Left', 'Right', 'Down', 'Up'],
+                ['Left', 'Right', 'Down', 'Up', 'Grasp']
+            ],
+            defaultSelections: ['Down', 'Down', 'Grasp'],
+            videoPath: 'media/videos/video3/',
+            keySuffix: '-'
+        };
+        initializeDemoUnit('control-sequence-unit-1', demo1Config);
+
+        const demo2Config = {
+            actions: [
+                ['towel', 'cup', 'cup2'],
+                ['grasp', 'ungrasp'],
+                ['0.1', '0.2']
+            ],
+            defaultSelections: ['cup', 'grasp', '0.1'],
+            videoPath: 'media/videos/video1/'
+        };
+        initializeDemoUnit('control-sequence-unit-2', demo2Config);
+    });
 </script>
 
-</section>
+
+
+
+
+
+
 
 
 
